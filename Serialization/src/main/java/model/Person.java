@@ -2,12 +2,12 @@ package model;
 
 import javax.print.attribute.standard.PagesPerMinute;
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String name;
     private int age;
-    private int cc;
+    private String cc;
 
-    public Person (String name, int age, int cc){
+    public Person (String name, int age, String cc){
         this.name = name;
         this.age = age;
         this.cc = cc;
@@ -21,8 +21,8 @@ public class Person {
         return age;
     }
 
-    public int getCc(){
-        return age;
+    public String getCc(){
+        return cc;
     }
 
     public void setname (String name){
@@ -44,9 +44,17 @@ public class Person {
     }
 
 
-    public int compareTo(Person o){
-        //Primer criterio
-        
+    @Override
+    public int compareTo(Person o) {
+        // Primer criterio de comparación
+        int difference = this.age - o.getAge();
 
+        // Segundo criterio de comparación
+        if ( difference == 0){
+            difference = this.name.compareTo(o.getName());
+        }
+
+        // Resultado de la comparación
+        return difference;
     }
 }
